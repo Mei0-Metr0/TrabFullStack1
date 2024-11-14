@@ -1,13 +1,12 @@
-import PokemonCard from "./components/PokemonCard";
+import PokemonGallery from "./components/PokemonGallery";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-
   return (
     <div className="container">
-      <PokemonCard/>
+      <PokemonGallery />
     </div>
   );
 }
 
-export default App
+export default App;
