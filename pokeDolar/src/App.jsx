@@ -1,3 +1,4 @@
+import React from "react";
 import PokemonGallery from "./components/PokemonGallery";
 import "bootstrap/dist/css/bootstrap.min.css";
 

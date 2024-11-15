@@ -1,4 +1,6 @@
 function PokemonCard({ name, imageUrl }) {
+    if (!name || !imageUrl) return null;
+  
     return (
       <div className="col-6 col-md-3 mb-3">
         <div className="card">
