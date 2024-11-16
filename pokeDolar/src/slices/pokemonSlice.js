@@ -11,7 +11,7 @@ const pokemonSlice = createSlice({
   initialState: {
     allPokemonNames: [],
     currentPage: 1,
-    limit: 20,
+    limit: 8,
     totalPages: 0,
   },
   reducers: {

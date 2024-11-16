@@ -1,17 +1,16 @@
-function PokemonCard({ name, imageUrl }) {
-    if (!name || !imageUrl) return null;
-  
-    return (
-      <div className="col-6 col-md-3 mb-3">
-        <div className="card">
-          <div className="card-body text-center">
-            <p>{name}</p>
-            <img src={imageUrl} alt={name} style={{ width: "150px", height: "150px" }} />
-          </div>
+function PokemonCard({ name, imageUrl, number }) {
+  if (!name || !imageUrl) return null;
+
+  return (
+    <div className="col-6 col-md-3 mb-4">
+      <div className="card">
+        <img src={imageUrl} className="card-img-top" alt={name} />
+        <div className="card-body text-center">
+          <h5 className="card-title">#{number} {name}</h5>
         </div>
       </div>
-    );
-  }
-  
-  export default PokemonCard;
-  
+    </div>
+  );
+}
+
+export default PokemonCard;

@@ -26,8 +26,9 @@ function PokemonGallery() {
           <p>Carregando...</p>
         ) : (
           paginatedPokemon.map((pokemonName, index) => {
-            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${startIndex + index + 1}.png`;
-            return <PokemonCard key={startIndex + index + 1} name={capitalize(pokemonName)} imageUrl={imageUrl} />;
+            const number = startIndex + index + 1; // Calcula o número do Pokémon
+            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`;
+            return <PokemonCard key={number} name={capitalize(pokemonName)} imageUrl={imageUrl} number={number} />;
           })
         )}
       </div>
