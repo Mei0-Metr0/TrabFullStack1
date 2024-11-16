@@ -26,7 +26,7 @@ function PokemonDisplay() {
         <>
           <h2>Pokémon do Valor do Dólar: R${exchangeRate.toFixed(2)}</h2>
           <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${dollarPokemon.id}.png`}
+            src={dollarPokemon.sprites.other['official-artwork'].front_default}
             alt={dollarPokemon.name}
             style={{ width: "400px", height: "400px" }}
           />
