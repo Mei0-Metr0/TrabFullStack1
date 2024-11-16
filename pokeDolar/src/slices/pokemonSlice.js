@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchPokemonList } from "../services/apiService";
 
 export const fetchAllPokemonNames = createAsyncThunk("pokemon/fetchAllPokemonNames", async () => {
-  const allPokemon = await fetchPokemonList(0, 1025); // Número total aproximado de Pokémon
+  const allPokemon = await fetchPokemonList(0, 1025); // Número total de Pokémon
   return allPokemon.map((pokemon) => pokemon.name);
 });
 
@@ -10,13 +10,23 @@ const pokemonSlice = createSlice({
   name: "pokemon",
   initialState: {
     allPokemonNames: [],
-    status: "idle",
+    currentPage: 1,
+    limit: 20,
+    totalPages: 0,
+  },
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllPokemonNames.fulfilled, (state, action) => {
       state.allPokemonNames = action.payload;
+      state.totalPages = Math.ceil(action.payload.length / state.limit);
     });
   },
 });
+
+export const { setCurrentPage } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;
