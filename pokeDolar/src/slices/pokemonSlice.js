@@ -18,6 +18,13 @@ const pokemonSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
+    setTotalPages: (state, action) => {
+      state.totalPages = action.payload;
+      // Reset para página 1 se a página atual for maior que o total de páginas
+      if (state.currentPage > action.payload) {
+        state.currentPage = 1;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllPokemonNames.fulfilled, (state, action) => {
@@ -27,5 +34,5 @@ const pokemonSlice = createSlice({
   },
 });
 
-export const { setCurrentPage } = pokemonSlice.actions;
+export const { setCurrentPage, setTotalPages } = pokemonSlice.actions;
 export default pokemonSlice.reducer;

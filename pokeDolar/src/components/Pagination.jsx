@@ -6,6 +6,11 @@ function Pagination() {
   const dispatch = useDispatch();
   const { currentPage, totalPages } = useSelector((state) => state.pokemon);
 
+  // Não renderiza a paginação se houver apenas uma página
+  if (totalPages <= 1) {
+    return null;
+  }
+
   const handlePrevious = () => {
     if (currentPage > 1) {
       dispatch(setCurrentPage(currentPage - 1));

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllPokemonNames } from "../slices/pokemonSlice";
+import { fetchAllPokemonNames, setTotalPages } from "../slices/pokemonSlice";
 import PokemonCard from "./PokemonCard";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
@@ -18,14 +18,25 @@ function PokemonGallery() {
 
   const capitalize = (name) => name.charAt(0).toUpperCase() + name.slice(1);
 
-  // Filtra os Pokémon baseado na busca
-  const filteredPokemon = allPokemonNames.filter((name, index) => {
-    const number = index + 1;
+  // Cria um array com os Pokémon e seus números originais
+  const pokemonWithNumbers = allPokemonNames.map((name, index) => ({
+    name,
+    number: index + 1
+  }));
+
+  // Filtra os Pokémon mantendo seus números originais
+  const filteredPokemon = pokemonWithNumbers.filter(pokemon => {
     return (
-      name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      number.toString() === searchQuery
+      pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pokemon.number.toString() === searchQuery
     );
   });
+
+  // Atualiza o número total de páginas baseado nos resultados filtrados
+  useEffect(() => {
+    const totalFilteredPages = Math.ceil(filteredPokemon.length / limit);
+    dispatch(setTotalPages(totalFilteredPages));
+  }, [dispatch, filteredPokemon.length, limit]);
 
   const startIndex = (currentPage - 1) * limit;
   const paginatedPokemon = filteredPokemon.slice(startIndex, startIndex + limit);
@@ -37,15 +48,14 @@ function PokemonGallery() {
         {paginatedPokemon.length === 0 ? (
           <p>Nenhum Pokémon encontrado</p>
         ) : (
-          paginatedPokemon.map((pokemonName, index) => {
-            const number = filteredPokemon.indexOf(pokemonName) + 1;
-            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`;
+          paginatedPokemon.map((pokemon) => {
+            const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.number}.png`;
             return (
               <PokemonCard
-                key={number}
-                name={capitalize(pokemonName)}
+                key={pokemon.number}
+                name={capitalize(pokemon.name)}
                 imageUrl={imageUrl}
-                number={number}
+                number={pokemon.number}
               />
             );
           })
