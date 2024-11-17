@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllPokemonNames, setTotalPages } from "../slices/pokemonSlice";
+import { fetchAllPokemonNames, setTotalPages } from "../slices/galleryPokemonSlice";
+import { capitalize } from "../utils/stringUtils";
 import PokemonCard from "./PokemonCard";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
@@ -15,8 +16,6 @@ function PokemonGallery() {
       dispatch(fetchAllPokemonNames());
     }
   }, [dispatch, allPokemonNames]);
-
-  const capitalize = (name) => name.charAt(0).toUpperCase() + name.slice(1);
 
   // Cria um array com os Pokémon e seus números originais
   const pokemonWithNumbers = allPokemonNames.map((name, index) => ({

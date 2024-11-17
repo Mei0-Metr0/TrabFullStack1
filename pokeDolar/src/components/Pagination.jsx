@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage } from "../slices/pokemonSlice";
+import { setCurrentPage } from "../slices/galleryPokemonSlice";
 
 function Pagination() {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ function PokemonCard({ name, imageUrl, number }) {
   if (!name || !imageUrl) return null;
 
   return (
-    <div className="col-6 col-md-3 mb-4">
+    <div className="col-6 col-md-2 mb-4">
       <div className="card">
         <img src={imageUrl} className="card-img-top" alt={name} />
         <div className="card-body text-center">
