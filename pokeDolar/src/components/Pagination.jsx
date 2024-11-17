@@ -1,3 +1,5 @@
+// Arquivo de Paginação, para navegação entre páginas
+
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../slices/paginationSlice";
 
@@ -10,12 +12,14 @@ function Pagination() {
     return null;
   }
 
+  // Página anterior
   const handlePrevious = () => {
     if (currentPage > 1) {
       dispatch(setCurrentPage(currentPage - 1));
     }
   };
 
+  // Página seguinte
   const handleNext = () => {
     if (currentPage < totalPages) {
       dispatch(setCurrentPage(currentPage + 1));

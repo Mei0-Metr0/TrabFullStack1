@@ -1,3 +1,5 @@
+// Arquivo de componente que apresenta o Pokemon baseado na cotação de USD para BRL
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDollarPokemon } from "../slices/dollarPokemonSlice";
@@ -10,10 +12,12 @@ function PokemonDisplay() {
   const dispatch = useDispatch();
   const { dollarPokemon, exchangeRate, status } = useSelector((state) => state.dollarPokemon);
 
+  // Obtenção por useEffect
   useEffect(() => {
     dispatch(fetchDollarPokemon());
   }, [dispatch]);
 
+  // Gerencia estados
   if (status === "pending") {
     <PendingState />
   }

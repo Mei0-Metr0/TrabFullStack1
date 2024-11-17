@@ -1,3 +1,5 @@
+// Componente com uma barra de busca para pesquisar Pokemons
+
 import { useDispatch } from "react-redux";
 import { setSearchQuery } from "../slices/filterSlice";
 

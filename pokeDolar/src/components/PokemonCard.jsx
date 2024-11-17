@@ -1,3 +1,5 @@
+// Componente para exibir cada Pokemon em um cartão separado na galeria
+
 function PokemonCard({ name, imageUrl, number }) {
   if (!name || !imageUrl) return null;
 

@@ -1,3 +1,5 @@
+// Componente para dropdown box para filtragem de Pokemons por tipo
+
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedType } from '../slices/filterSlice';

@@ -1,3 +1,5 @@
+// Componente para apresentar a galeria de Pokemons
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllPokemonNames } from "../slices/gallerySlice";
@@ -77,6 +79,7 @@ function PokemonGallery() {
   const startIndex = (currentPage - 1) * limit;
   const paginatedPokemon = filteredPokemon.slice(startIndex, startIndex + limit);
 
+  // Gerencia estados
   if (status === "pending") {
     <PendingState  />
   }

@@ -1,3 +1,5 @@
+// Componente para o estado de carregamento
+
 const PendingState = () => {
   return (
     <div className="text-center my-5">
