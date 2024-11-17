@@ -8,4 +8,16 @@
 .img {
     width: 400px;
     height: 400px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .img {
+        width: 100%;
+        height: auto;
+    }
+
+    .display {
+        font-size: 1.5rem;
+    }
 }
