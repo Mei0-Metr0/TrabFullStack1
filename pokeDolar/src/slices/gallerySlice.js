@@ -1,6 +1,9 @@
+// Arquivo para gerenciar a slice de galeria
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchPokemonList } from "../services/apiService";
 
+// Obtém todos os nomes de pokemons da API
 export const fetchAllPokemonNames = createAsyncThunk(
   "gallery/fetchAllPokemonNames",
   async (_, { rejectWithValue }) => {
@@ -13,6 +16,7 @@ export const fetchAllPokemonNames = createAsyncThunk(
   }
 );
 
+// Cria a slice de galeria
 const gallerySlice = createSlice({
   name: "gallery",
   initialState: {
@@ -21,6 +25,7 @@ const gallerySlice = createSlice({
     error: null,
   },
   reducers: {},
+  // Gerenciamento de mudanças de estado
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllPokemonNames.pending, (state) => {

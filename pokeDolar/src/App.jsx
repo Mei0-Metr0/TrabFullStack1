@@ -1,3 +1,5 @@
+// Arquivo de contêiner da página de aplicação
+
 import React from "react";
 import PokemonGallery from "./components/PokemonGallery";
 import PokemonDisplay from "./components/PokemonDisplay";

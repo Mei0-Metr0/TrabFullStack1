@@ -1,6 +1,9 @@
+// Arquivo para gerenciar a obtenção do valor de cotação de USD, e sua conversão para BRL
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchDollarRate, fetchPokemonByNumber } from "../services/apiService";
 
+// Obtém a cotação atual e apresenta o respectivo Pokemon
 export const fetchDollarPokemon = createAsyncThunk(
   "pokemon/fetchDollarPokemon",
   async () => {
@@ -10,6 +13,7 @@ export const fetchDollarPokemon = createAsyncThunk(
   }
 );
 
+// Cria a slice
 const dollarPokemonSlice = createSlice({
   name: "pokemon",
   initialState: {
@@ -18,6 +22,7 @@ const dollarPokemonSlice = createSlice({
     status: "idle", // idle, pending, fulfilled, rejected
   },
   reducers: {},
+  // Gerencia alterações de estado
   extraReducers: (builder) => {
     builder
       .addCase(fetchDollarPokemon.pending, (state) => {
