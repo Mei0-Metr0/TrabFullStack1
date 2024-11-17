@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllPokemonNames, setTotalPages } from "../slices/galleryPokemonSlice";
+import { fetchAllPokemonNames } from "../slices/gallerySlice";
+import { setTotalPages } from "../slices/paginationSlice";
 import { capitalize } from "../utils/stringUtils";
 import PokemonCard from "./PokemonCard";
 import Pagination from "./Pagination";
@@ -8,7 +9,8 @@ import SearchBar from "./SearchBar";
 
 function PokemonGallery() {
   const dispatch = useDispatch();
-  const { allPokemonNames, currentPage, limit } = useSelector((state) => state.pokemon);
+  const { allPokemonNames, status, error } = useSelector((state) => state.gallery);
+  const { currentPage, limit } = useSelector((state) => state.pagination);
   const { searchQuery } = useSelector((state) => state.filter);
 
   useEffect(() => {
@@ -39,6 +41,24 @@ function PokemonGallery() {
 
   const startIndex = (currentPage - 1) * limit;
   const paginatedPokemon = filteredPokemon.slice(startIndex, startIndex + limit);
+
+  if (status === "pending") {
+    return (
+      <div className="text-center my-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Carregando...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (status === "rejected") {
+    return (
+      <div className="alert alert-danger text-center my-5" role="alert">
+        Erro ao carregar os Pokémon: {error}
+      </div>
+    );
+  }
 
   return (
     <div>

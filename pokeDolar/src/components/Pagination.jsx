@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage } from "../slices/galleryPokemonSlice";
+import { setCurrentPage } from "../slices/paginationSlice";
 
 function Pagination() {
   const dispatch = useDispatch();
-  const { currentPage, totalPages } = useSelector((state) => state.pokemon);
+  const { currentPage, totalPages } = useSelector((state) => state.pagination);
 
   // Não renderiza a paginação se houver apenas uma página
   if (totalPages <= 1) {
