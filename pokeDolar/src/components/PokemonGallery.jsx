@@ -9,6 +9,8 @@ import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
 import PokemonTypeFilter from "./PokemonTypeFilter";
 import { fetchPokemonByType } from "../services/apiService";
+import PendingState from "./PendingState"
+import RejectState from "./RejectState"
 
 function PokemonGallery() {
   const dispatch = useDispatch();
@@ -76,21 +78,11 @@ function PokemonGallery() {
   const paginatedPokemon = filteredPokemon.slice(startIndex, startIndex + limit);
 
   if (status === "pending") {
-    return (
-      <div className="text-center my-5">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    <PendingState  />
   }
 
   if (status === "rejected") {
-    return (
-      <div className="alert alert-danger text-center my-5" role="alert">
-        Error loading Pokemon: {error}
-      </div>
-    );
+    <RejectState />
   }
 
   return (

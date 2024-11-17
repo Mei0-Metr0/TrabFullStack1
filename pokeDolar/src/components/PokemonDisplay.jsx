@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDollarPokemon } from "../slices/dollarPokemonSlice";
 import { toUpperCaseText } from "../utils/stringUtils";
 import './PokemonDisplay.css'
+import PendingState from "./PendingState"
+import RejectState from "./RejectState"
 
 function PokemonDisplay() {
   const dispatch = useDispatch();
@@ -13,21 +15,11 @@ function PokemonDisplay() {
   }, [dispatch]);
 
   if (status === "pending") {
-    return (
-      <div className="text-center my-5">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Carregando...</span>
-        </div>
-      </div>
-    );
+    <PendingState />
   }
 
   if (status === "rejected") {
-    return (
-      <div className="alert alert-danger text-center my-5" role="alert">
-        Erro ao carregar os dados. Tente novamente mais tarde.
-      </div>
-    );
+    <RejectState />
   }
 
   return (
